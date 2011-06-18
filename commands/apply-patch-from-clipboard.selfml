@@ -1,0 +1,22 @@
+(trigger
+    (key [[ctrl][shift][cmd]D]))
+
+(name [Apply Patch From Clipboard to Current Document])
+
+(input selection nothing)
+
+(output tooltip)
+
+(save nothing)
+
+(script [export PATCH_GET=0
+export __CF_USER_TEXT_ENCODING=$UID:0x8000100:0x8000100
+
+if [[ -z $TM_FILEPATH ]]
+  then exit_discard
+  else pbpaste | patch "$TM_FILEPATH" -p0
+fi
+
+# Reload patched file
+rescan_project
+])

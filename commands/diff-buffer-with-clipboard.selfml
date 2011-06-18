@@ -1,0 +1,18 @@
+(trigger
+    (key [[ctrl][shift][cmd]D]))
+
+(name [Document / Selection With Clipboard])
+
+(input selection)
+
+(output tooltip)
+
+(save nothing)
+
+(script [# set defaultCStringEncoding to UTF-8
+if diff --strip-trailing-cr --label "${TM_FILENAME:-untitled}" --label "(clipboard)" -u - <(__CF_USER_TEXT_ENCODING=$UID:0x8000100:0x8000100 pbpaste); then
+  echo "There are no differences."
+else
+  exit_create_new_document
+fi
+])

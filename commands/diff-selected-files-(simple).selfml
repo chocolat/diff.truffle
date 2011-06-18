@@ -1,0 +1,20 @@
+(trigger
+    (key [[ctrl][shift][cmd]D]))
+
+(name [Selected Files in Project Drawer])
+
+(input nothing)
+
+(output new-document)
+
+(save nothing)
+
+(script [eval arr=("$TM_SELECTED_FILES")
+if [[ ${#arr[@]} != 2 ]]; then
+   exit_show_tool_tip $'You need to select exactly two\nfiles in the project drawer.'
+fi
+
+if eval diff -u "$TM_SELECTED_FILES"; then
+  exit_show_tool_tip "There are no differences."
+fi
+])

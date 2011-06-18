@@ -1,0 +1,28 @@
+(trigger
+    (key [[ctrl][shift][cmd]D]))
+
+(name [Apply Patch to Files…])
+
+(input document)
+
+(output tooltip)
+
+(save nothing)
+
+(script [# patch may be the most brainfucked standard Unix tool ever. Make sure it doesn't try to access the network (it tends to ignore the -g option, I find) -- if you have Perforce installed, this can be a huge performance hit -- and it touches the network even for files that aren't controlled by Perforce. All files on the system get the lovely 'is this file locked'? treatment. Software tools, huh?
+
+export PATCH_GET=0
+
+path=$(osascript<<END
+tell application "TextMate"
+	set theFile to choose folder with prompt "Where should I look for files to be patched?"
+	set the result to POSIX path of theFile
+end tell
+END)
+
+if [[ -z $path ]]; then
+	exit_discard
+else
+	patch -d "$path" -p0
+fi
+])

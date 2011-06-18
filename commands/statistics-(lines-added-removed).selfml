@@ -1,0 +1,17 @@
+(trigger
+    (key [[ctrl][shift]N]))
+
+(name [Statistics (Lines Added/Removed)])
+
+(only-in source.diff)
+
+(input document)
+
+(output tooltip)
+
+(save nothing)
+
+(script [egrep -v '^(\+\+\+|---) '|\
+  tee >(add=$(grep ^+|wc -l);  echo 1>&2 "Lines Added   $add") \
+     |{ rem=$(grep ^-|wc -l); wait; echo "Lines Removed $rem"; }
+])

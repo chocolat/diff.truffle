@@ -1,0 +1,31 @@
+(apply markup.changed
+    [Style: Changed]
+    (color FFFFFF)
+    (background F5C411))
+
+(apply markup.deleted
+    [Style: Deleted]
+    (color FFFFFF)
+    (background FF3D3D))
+
+(apply meta.diff.index
+    [Style: Index]
+    (color FFFFFF)
+    (background 3467D1)
+    (italic))
+
+(apply meta.diff.header
+    [Style: Header]
+    (color FFFFFF)
+    (background 5685E3))
+
+(apply markup.inserted
+    [Style: Inserted]
+    (color 000000)
+    (background 73FF65))
+
+(apply meta.diff.range
+    [Style: Range]
+    (color FFFFFF)
+    (background 3467D1)
+    (italic))

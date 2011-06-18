@@ -1,0 +1,21 @@
+(detector
+    (extension diff)
+    (extension patch))
+
+(detector
+    (content-matches [(?x)^
+		(===\ modified\ file
+		|==== \s* // .+ \s - \s .+ \s+ ====
+		|Index:\ 
+		|---\ [^%]
+		|\*\*\*.*\d{4}\s*$
+		|\d+(,\d+)* (a|d|c) \d+(,\d+)* $
+		|diff\ --git\ 
+		)
+	]))
+
+(folding
+    (start ^\+\+\+)
+    (stop ^---|^$))
+
+(in [source.diff meta.diff.range])

@@ -1,0 +1,52 @@
+(root source.diff
+    (zone meta.separator.diff
+        (match
+            (regex [^((\*{15})|(={67})|(-{3}))$\n?]
+                (1 punctuation.definition.separator.diff))))
+    (zone meta.diff.range.normal
+        (match
+            (regex [^\d+(,\d+)*(a|d|c)\d+(,\d+)*$\n?])))
+    (zone meta.diff.range.unified
+        (match
+            (regex [^(@@)\s*(.+?)\s*(@@)($\n?)?]
+                (3 punctuation.definition.range.diff)
+                (1 punctuation.definition.range.diff)
+                (2 meta.toc-list.line-number.diff))))
+    (zone meta.diff.range.context
+        (match
+            (regex [^(((\-{3}) .+ (\-{4}))|((\*{3}) .+ (\*{4})))$\n?]
+                (7 punctuation.definition.range.diff)
+                (3 punctuation.definition.range.diff)
+                (4 punctuation.definition.range.diff)
+                (6 punctuation.definition.range.diff))))
+    (zone meta.diff.header.from-file
+        (match
+            (regex [(^(((-{3}) .+)|((\*{3}) .+))$\n?|^(={4}) .+(?= - ))]
+                (7 punctuation.definition.from-file.diff)
+                (4 punctuation.definition.from-file.diff)
+                (6 punctuation.definition.from-file.diff))))
+    (zone meta.diff.header.to-file
+        (match
+            (regex [(^(\+{3}) .+$\n?| (-) .* (={4})$\n?)]
+                (3 punctuation.definition.to-file.diff)
+                (4 punctuation.definition.to-file.diff)
+                (2 punctuation.definition.to-file.diff))))
+    (zone markup.inserted.diff
+        (match
+            (regex [^(((>)( .*)?)|((\+).*))$\n?]
+                (3 punctuation.definition.inserted.diff)
+                (6 punctuation.definition.inserted.diff))))
+    (zone markup.changed.diff
+        (match
+            (regex [^(!).*$\n?]
+                (1 punctuation.definition.inserted.diff))))
+    (zone markup.deleted.diff
+        (match
+            (regex [^(((<)( .*)?)|((-).*))$\n?]
+                (3 punctuation.definition.inserted.diff)
+                (6 punctuation.definition.inserted.diff))))
+    (zone meta.diff.index
+        (match
+            (regex [^Index(:) (.+)$\n?]
+                (1 punctuation.separator.key-value.diff)
+                (2 meta.toc-list.file-name.diff)))))
