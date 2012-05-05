@@ -1,1 +1,1 @@
-(menu command.diff-buffer-with-clipboard command.diff-with-file-on-disk command.active-file-with-arbitrary-file… --- [command.diff-selected-files-(simple)] command.diff-selected-files --- command.merge-selected-files --- [command.statistics-(lines-added-removed)] --- command.apply-patch)
+(menu command.diff-buffer-with-clipboard command.diff-with-file-on-disk command.active-file-with-arbitrary-file… --- [command.diff-selected-files-(simple)] --- command.merge-selected-files --- [command.statistics-(lines-added-removed)] --- command.apply-patch)
